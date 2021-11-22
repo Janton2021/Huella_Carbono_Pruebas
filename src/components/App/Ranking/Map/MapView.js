@@ -3,6 +3,7 @@ import React, {useState, useRef } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import {IconLocation} from './IconLocation'
 import useGeoLocation from './useGeoLocation'
+import { popupContent, popupHead, popupText } from './popupStyles'
 
 import {places} from './data1.json'
 
@@ -34,9 +35,19 @@ const MapView = () => {
                 key={id}
             >
                 <Popup>
-                    <b>{places.name}</b>
-                    <br/>
-                    <b>{places.geometry}</b>
+                    <div style={popupContent}>
+                        <img
+                            src={places.img}
+                            width="60"
+                            height="60"
+                        />
+                        <div style={popupHead}>
+                            {places.name}
+                        </div>
+                        <span style={popupText}>
+                        {places.geometry}
+                        </span>
+                    </div>
                 </Popup>
             </Marker>
             )}
@@ -49,7 +60,11 @@ const MapView = () => {
                         location.coordinates.lng
                         ]}>
                     <Popup>
-                        <b>My Location</b>
+                        <b>My Current Location</b>
+                        <br/>
+                        <b>Lat: {location.coordinates.lat}</b>
+                        <br/>
+                        <b>Lng: {location.coordinates.lng}</b>
                     </Popup>
 
                 </Marker>

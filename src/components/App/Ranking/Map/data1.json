@@ -5,28 +5,32 @@
             "geometry": [
                 40.46062368406009, 
                 -3.6984189253691517                
-            ]
+            ],
+            "img": "https://cdn.icon-icons.com/icons2/3191/PNG/128/sunny_sun_cloud_weather_cloudy_icon_194237.png"
         },
         {
             "name": "Cuzco",
             "geometry": [
                 40.45906146079037, 
                 -3.6900209290541035                
-            ]
+            ],
+            "img": "https://cdn.icon-icons.com/icons2/3191/PNG/128/bonfire_stake_campfire_blaze_fire_log_icon_194257.png"
         },
         {
             "name": "Plaza Lima",
             "geometry": [
                 40.452010085735246, 
                 -3.6907612187268795                
-            ]
+            ],
+            "img": "https://cdn.icon-icons.com/icons2/3191/PNG/128/sunset_sun_sunshine_sunrise_weather_icon_194245.png"
         },
         {
-            "name": "My Location",
+            "name": "Chamartín",
             "geometry": [
-                40.4427203,
-                -3.644582
-            ]        
+                40.47202242662976, 
+                -3.6824007733026263
+            ],
+            "img": "https://cdn.icon-icons.com/icons2/3191/PNG/128/sunset_sun_sunshine_sunrise_weather_icon_194245.png"        
         }
     ]
         
