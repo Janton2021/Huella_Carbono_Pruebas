@@ -1,9 +1,8 @@
 import React, {useState, useRef } from 'react'
 
-import L from 'leaflet'
 import { Map, TileLayer, Marker } from 'react-leaflet'
 import {IconLocation} from './IconLocation'
-import iconMarker from './IconMarker'
+//import iconMarker from './IconMarker'
 
 
 import useGeoLocation from './useGeoLocation'
@@ -57,7 +56,7 @@ const MapView = () => {
                             ]}>
                         </Marker>
                     </Link>
-                )} 
+                )}
         </Map>
     )
 }
