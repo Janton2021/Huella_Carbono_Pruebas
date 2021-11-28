@@ -1,5 +1,35 @@
-.leaflet-container {
-    width: 40vw;
-    height: 40vh;
+/* .leaflet-container {
+    width: 100%;
+    height: 50%;
+    
+  } */
+
+
+  .iconMarker::before {
+    background-color: #4CAF50;
+    border:5px solid;
+    border-color: black;
+    border-radius:5px;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    content: "Hola";
   }
   
+
+
+
+   /* {places.map( (places, id) => 
+                    <Link to={paths.results}>
+                        <Marker 
+                            position={places.geometry}
+                            icon={iconMarker}
+                            key={id}>
+                            <iconMarker/>
+                        </Marker>
+                     </Link>
+                )} */

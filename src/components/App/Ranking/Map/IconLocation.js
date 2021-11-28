@@ -1,16 +1,36 @@
+//import { chakra} from '@emotion/react'
+
 import L from 'leaflet'
+import './Map.css'
+//import {places} from './data1.json'
+//import iconMarker from './IconMarker'
 
-import icon from 'leaflet/dist/images/marker-icon.png'
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-export const IconLocation = L.icon({
-    iconUrl: icon,
-    iconShadow: iconShadow,
-    iconSize: [35, 45],
-    iconAnchor: [17, 46],
-    popupAnchor: [3, -46],
-    shadowSize: [35, 45],
-    shadowAnchor: [17, 46]
+export const IconLocation = L.divIcon({
+    className: 'iconMarker',
+   
 })
+
+
+   // const icon = L.divIcon({
+        
+    //         color: 'white',
+    //         background_color: '#4CAF50',
+    //         border: '5px solid',
+    //         border_color: 'black',
+    //         border_radius: '5px',
+    //         padding: '10px 32px',
+        
+    // })
+        
+
+
+
+
+
+
+    
+
+
 
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import React, { useState } from "react";
 
 //OnBoarding ChocUI
-import { Text, Box, Flex, useColorModeValue, Image } from "@chakra-ui/react"
+import { Text, Box, Flex, useColorModeValue, Image, Stack, HStack } from "@chakra-ui/react"
 
 
 export const Carrusel = () => {
@@ -30,23 +30,33 @@ export const Carrusel = () => {
   const slides = [
     {
       img:
-        "https://st2.depositphotos.com/1015682/11943/i/950/depositphotos_119432900-stock-photo-eco-footprint-shaped-island.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQkwHceiWpetZnnf4oEskNyAr9iUFbC547Hg&usqp=CAU",
+        label: "First Slide",
+        description: "Soy la primera etiqueta",
     },
     {
       img:
-        "https://images.pexels.com/photos/2714581/pexels-photo-2714581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAK2JqugpF9gzU-fTij5NE_3oaGgf9gema-g&usqp=CAU",
+        label: "Second Slide",
+        description: "Soy la segunda etiqueta",
     },
     {
       img:
-        "https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4_kbhdvS642dcdfcrooi8LBWzFrS8o_0zlw&usqp=CAU",
+        label: "Third Slide",
+        description: "Soy la tercera etiqueta",
     },
     {
       img:
-        "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMXNEl226o_Iqff4DISbYBH0CfoTv56PjrLQ&usqp=CAU",
+        label: "Fourth Slide",
+        description: "Soy la cuarta etiqueta",
     },
     {
       img:
-        "https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-M9ioRIZ7WqtEfz-3nH0Hg-cLFrXLuDk1nw&usqp=CAU",
+        label: "Fifth Slide",
+        description: "Soy la quinta",
     },
   ];
 
@@ -60,6 +70,9 @@ export const Carrusel = () => {
   const nextSlide = () => {
     setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
   };
+  const setSlide = (slide) => {
+    setCurrentSlide(slide);
+  }
 
   const carouselStyle = {
     transition: "all .5s",
@@ -72,40 +85,66 @@ export const Carrusel = () => {
 
   return (
     <>
-    
-        <Flex
-              w="full"
-              bg={useColorModeValue("gray.200", "gray.600")}
-              p={10}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Flex w="full" overflow="hidden" pos="relative">
-                <Flex h="400px" w="full" {...carouselStyle}>
-                  {slides.map((slide, sid) => (
-                    <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
-                      <Text
-                        color="white"
-                        fontSize="xs"
-                        p="8px 12px"
-                        pos="absolute"
-                        top="0"
-                      >
-                        {sid + 1} / {slidesCount}
-                      </Text>
-                      <Image src={slide.img} boxSize="full" backgroundSize="cover" />
-                    </Box>
-                  ))}
-                </Flex>
-                <Text {...arrowStyles} left="0" onClick={prevSlide}>
-                  &#10094;
-                </Text>
-                <Text {...arrowStyles} right="0" onClick={nextSlide}>
-                  &#10095;
-                </Text>
-              </Flex>
-            </Flex>
-
+            <Flex
+      w="full"
+      bg={useColorModeValue("gray.200", "gray.600")}
+      p={10}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Flex w="full" pos="relative" overflow="hidden">
+        <Flex h="400px" w="full" {...carouselStyle}>
+          {slides.map((slide, sid) => (
+            <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
+              <Text
+                color="white"
+                fontSize="xs"
+                p="8px 12px"
+                pos="absolute"
+                top="0"
+              >
+                {sid + 1} / {slidesCount}
+              </Text>
+              <Image src={slide.img} boxSize="full" backgroundSize="cover" />
+              <Stack
+                p="8px 12px"
+                pos="absolute"
+                bottom="24px"
+                textAlign="center"
+                w="full"
+                mb="8"
+                color="black"
+              >
+                <Text fontSize="2xl">{slide.label}</Text>
+                <Text fontSize="lg">{slide.description}</Text>
+              </Stack>
+            </Box>
+          ))}
+        </Flex>
+        <Text {...arrowStyles} left="0" onClick={prevSlide}>
+          &#10094;
+        </Text>
+        <Text {...arrowStyles} right="0" onClick={nextSlide}>
+          &#10095;
+        </Text>
+        <HStack justify="center" pos="absolute" bottom="8px" w="full">
+          {Array.from({ length: slidesCount }).map((_, slide) => (
+            <Box
+              key={`dots-${slide}`}
+              cursor="pointer"
+              boxSize={["7px", , "15px"]}
+              m="0 2px"
+              bg={currentSlide === slide ? "blackAlpha.800" : "blackAlpha.500"}
+              rounded="50%"
+              display="inline-block"
+              transition="background-color 0.6s ease"
+              _hover={{ bg: "blackAlpha.800" }}
+              onClick={() => setSlide(slide)}
+            ></Box>
+          ))}
+        </HStack>
+      </Flex>
+    </Flex>
     </>
   )
 }

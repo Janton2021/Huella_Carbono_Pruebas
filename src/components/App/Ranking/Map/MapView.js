@@ -1,13 +1,19 @@
 import React, {useState, useRef } from 'react'
 
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import L from 'leaflet'
+import { Map, TileLayer, Marker } from 'react-leaflet'
 import {IconLocation} from './IconLocation'
+import iconMarker from './IconMarker'
+
+
 import useGeoLocation from './useGeoLocation'
-import { popupContent, popupHead, popupText } from './popupStyles'
 
 import {places} from './data1.json'
+import { paths } from 'services/routes'
+import { Link } from 'react-router-dom'
 
 import osm from './osm-providers'
+
 import 'leaflet/dist/leaflet.css'
 
 const MapView = () => {
@@ -24,53 +30,35 @@ const MapView = () => {
     const location = useGeoLocation()
 
     return (
-        <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+        <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef} style={{ width: "100%", height: "50%"}}>
             <TileLayer 
-                url={osm.maptiler.url} 
-                attribution={osm.maptiler.attribution}
-            />
-            {places.map( (places, id) => <Marker
-                position={places.geometry}
-                icon={IconLocation}
-                key={id}
-            >
-                <Popup>
-                    <div style={popupContent}>
-                        <img
-                            src={places.img}
-                            width="60"
-                            height="60"
-                        />
-                        <div style={popupHead}>
-                            {places.name}
-                        </div>
-                        <span style={popupText}>
-                        {places.geometry}
-                        </span>
-                    </div>
-                </Popup>
-            </Marker>
-            )}
+                    url={osm.maptiler.url} 
+                    attribution={osm.maptiler.attribution}/>
 
-            {location.loaded && !location.error && (
-                <Marker 
-                    icon={IconLocation} 
-                    position={[
-                        location.coordinates.lat, 
-                        location.coordinates.lng
-                        ]}>
-                    <Popup>
-                        <b>My Current Location</b>
-                        <br/>
-                        <b>Lat: {location.coordinates.lat}</b>
-                        <br/>
-                        <b>Lng: {location.coordinates.lng}</b>
-                    </Popup>
+               
+                {places.map((places, id) => 
+                    <Link to={paths.results}>
+                        <Marker
+                            position={places.geometry}
+                            key={id}
+                            style={{color: '#000000'}}
+                            icon={IconLocation}>
+                        </Marker>
+                </Link>
+                )}
 
-                </Marker>
-            )}
+                 {location.loaded && !location.error && (
+                    <Link to={paths.results}>
+                        <Marker
+                            icon={IconLocation} 
+                            position={[
+                                location.coordinates.lat, 
+                                location.coordinates.lng
+                            ]}>
+                        </Marker>
+                    </Link>
+                )} 
         </Map>
-        
     )
 }
 
